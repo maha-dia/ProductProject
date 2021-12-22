@@ -31,10 +31,21 @@ namespace VennDevTest.Infrastructure
             var newproduit = _dbContext.Produits.Add(produit);
             return newproduit.Entity;
         }
-        //public void SaveChange()
-        //{
-        //    _dbContext.SaveChanges();
-            
-        //}
+        public void SaveChange()
+        {
+            _dbContext.SaveChanges();
+
+        }
+
+        public void DeleteProduct(Produit produit)
+        {
+            _dbContext.Remove(produit);
+        }
+
+        public Produit EditeProduct(Produit produit)
+        {
+            var response=_dbContext.Produits.Update(produit);
+            return response.Entity;
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<VennDevTest.Entities.Produit>
 <div class="container space">
-    <a asp-action="AddProduit">Nouveau Produit</a>
-    <div class="panel ">
+    <button  type="button" class="btn btn-outline-primary" >
+        <a asp-action="AddProduit">Nouveau Produit</a>
+    </button>
+    <div class="panel">
         <div class="panel-heading space"><h5>List des produits</h5></div>
         <div class="panel-body space">
             <table class="table">
@@ -15,21 +17,25 @@
                     <th>Quantité</th>
                 </tr>
                 @{
-                foreach(var p in Model)
-                {
-                <tr>
-                    <td>@p.Id</td>
-                    <td>@p.Nom</td>
-                    <td>@p.Description</td>
-                    <td>@p.Image</td>
-                    <td>@p.Prix</td>
-                    <td>@p.EnStock</td>
-                    <td>@p.Quantite</td>
-                </tr>
-                }
+                    foreach (var p in Model)
+                    {
+                        <tr>
+
+                            <td><a asp-action="GetPoduitById" asp-route-id="@p.Id">@p.Id</a></td>
+                            <td>@p.Nom</td>
+                            <td>@p.Description</td>
+                            <td>@p.Image</td>
+                            <td>@p.Prix</td>
+                            <td>@p.EnStock</td>
+                            <td>@p.Quantite</td>
+                            <td><a asp-action="EditForm" asp-route-id="@p.Id">Editer</a></td>
+                            <td><a asp-action="DeleteProduct" asp-route-id="@p.Id">Supprimer</a></td>
+
+                        </tr>
+                    }
                 }
             </table>
         </div>
     </div>
-    
+
 </div>

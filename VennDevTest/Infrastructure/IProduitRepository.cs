@@ -11,6 +11,8 @@ namespace VennDevTest.Infrastructure
         IEnumerable<Produit> GetAllProduits();
         Produit GetProduitById(Guid id);
         Produit AddProduit(Produit produit);
-       // void SaveChange();
+        void SaveChange();
+        void DeleteProduct(Produit produit);
+        Produit EditeProduct(Produit produit);
     }
 }

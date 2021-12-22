@@ -26,6 +26,7 @@ namespace VennDevTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<ProduitDbContext>();
             services.AddTransient<IProduitRepository, ProduitsRepository>();
             
         }

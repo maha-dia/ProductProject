@@ -22,24 +22,49 @@ namespace VennDevTest.Controllers
             var produitItems = _produitRepository.GetAllProduits();
             return View("Produits",produitItems);
         }
-        
-        public ActionResult<Produit> GetPoduitById(Guid id)
+        [HttpGet]
+        public IActionResult GetPoduitById(Guid id)
         {
             var item = _produitRepository.GetProduitById(id);
-            return Ok(item);
+            return View("DetailsProduit",item);
         }
         public IActionResult AddProduit()
         {
             Produit p = new Produit();
             return View("AddProduit", p);
         }
-        public IActionResult SaveProduit(Produit? p)
+        [HttpPost]
+        public IActionResult SaveProduit(Produit p)
         {
-            var produit = _produitRepository.AddProduit(p);
-            //_produitRepository.SaveChange();
-            return RedirectToAction("Produits");
-            
+            if (ModelState.IsValid)
+            {
+                _produitRepository.AddProduit(p);
+                _produitRepository.SaveChange();
+                return RedirectToAction("GetAllProduits");
+            }
+            return View("AddProduit", p);
         }
+       
+        public IActionResult DeleteProduct(Guid id)
+        {
+            var product = _produitRepository.GetProduitById(id);
+            _produitRepository.DeleteProduct(product);
+            _produitRepository.SaveChange();
+            return RedirectToAction("GetAllProduits");
+        }
+        public IActionResult EditForm(Guid id)
+        {
+            var product = _produitRepository.GetProduitById(id);
+            return View("EditProduit", product);
+        }
+        public IActionResult EditeProduct(Produit product)
+        {
+            
+            _produitRepository.EditeProduct(product);
+            _produitRepository.SaveChange();
+            return RedirectToAction("GetAllProduits");
+        }
+
 
 
     }
