@@ -42,10 +42,6 @@ namespace VennDevTest.Infrastructure
             _dbContext.Remove(produit);
         }
 
-        public Produit EditeProduct(Produit produit)
-        {
-            var response=_dbContext.Produits.Update(produit);
-            return response.Entity;
-        }
+        
     }
 }

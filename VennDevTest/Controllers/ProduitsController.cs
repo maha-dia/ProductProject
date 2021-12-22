@@ -57,12 +57,22 @@ namespace VennDevTest.Controllers
             var product = _produitRepository.GetProduitById(id);
             return View("EditProduit", product);
         }
-        public IActionResult EditeProduct(Produit product)
+        public IActionResult EditeProduct(Guid id,Produit product)
         {
+            var prod = _produitRepository.GetProduitById(id);
             
-            _produitRepository.EditeProduct(product);
-            _produitRepository.SaveChange();
+            
+                prod.Description = product.Description;
+                prod.Nom = product.Nom;
+                prod.Prix = product.Prix;
+                prod.Quantite = product.Quantite;
+                prod.Image = product.Image;
+               
+                _produitRepository.SaveChange();
+                
+            
             return RedirectToAction("GetAllProduits");
+
         }
 
 

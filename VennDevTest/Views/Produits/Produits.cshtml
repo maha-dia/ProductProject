@@ -29,7 +29,7 @@
                             <td>@p.EnStock</td>
                             <td>@p.Quantite</td>
                             <td><a asp-action="EditForm" asp-route-id="@p.Id">Editer</a></td>
-                            <td><a asp-action="DeleteProduct" asp-route-id="@p.Id">Supprimer</a></td>
+                            <td><a asp-action="DeleteProduct" asp-route-id="@p.Id" onclick="return confirm('Supprimer ce produit!')">Supprimer</a></td>
 
                         </tr>
                     }

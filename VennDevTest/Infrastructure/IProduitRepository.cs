@@ -13,6 +13,5 @@ namespace VennDevTest.Infrastructure
         Produit AddProduit(Produit produit);
         void SaveChange();
         void DeleteProduct(Produit produit);
-        Produit EditeProduct(Produit produit);
     }
 }
