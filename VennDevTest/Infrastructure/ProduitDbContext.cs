@@ -13,7 +13,9 @@ namespace VennDevTest.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-LJ0NQCQ;Database=TestDatabase;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=.;Database=TestDatabase;Trusted_Connection=True;"
+                ,options => options.EnableRetryOnFailure()
+                );
         }
     }
 }
