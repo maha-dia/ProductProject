@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.IRepositories;
+using Core.Entities;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VennDevTest.Entities;
-using VennDevTest.Infrastructure;
+
 
 namespace VennDevTest.Controllers
 {
