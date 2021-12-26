@@ -31,7 +31,7 @@ namespace VennDevTest.Controllers
         public async Task<IActionResult> SaveProduit(AddProduitCommand command)
         {
             var result = await this._mediator.Send(command);
-            return View("AddProduit", command);
+            return RedirectToAction("GetAllProduits");
         }
         [HttpGet]
         public async Task<IActionResult> GetAllProduits(GetAllProduitQuerie request)

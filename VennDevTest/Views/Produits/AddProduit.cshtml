@@ -6,7 +6,7 @@
 <div class="card">
     <div class="card-header"><h3>Ajouter un nouveau produit</h3></div>
     <div class="card-body">
-        <form method="post" asp-action="SaveProduit">
+        <form method="post" asp-action="SaveProduit" enctype="multipart/form-data">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nom</label>
                 <input type="text" name="Nom" value="@Model.Nom" />
@@ -24,7 +24,7 @@
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Image</label>
-                <input type="text" name="Image" value="@Model.Image" />
+                <input asp-for="@Model.Image" name="Image" value="@Model.Image">  
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Quantité</label>
