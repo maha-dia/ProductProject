@@ -1,3 +1,4 @@
+using Application.Interfaces;
 using Core.Entities;
 using Infrastracture;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Web.Services;
 
 namespace VennDevTest
 {
@@ -16,11 +17,12 @@ namespace VennDevTest
     {
         public static void Main(string[] args)
         {
-            
-            using(var db= new ProduitDbContext())
+
+            using (var db = new ProduitDbContext( ))
             {
 
-                if (db.Produits.Count() == 0) {
+                if (db.Produits.Count() == 0)
+                {
                     db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();
                     db.Produits.Add(new Produit { Id = new Guid(), Nom = "pro-1", Description = "", EnStock = true, Image = null, Prix = 12236, Quantite = 155 });
@@ -28,10 +30,10 @@ namespace VennDevTest
                     db.Produits.Add(new Produit { Id = new Guid(), Nom = "pro-3", Description = "", EnStock = true, Image = null, Prix = 122, Quantite = 115 });
                     db.SaveChanges();
                 }
-                   
-                
-            }
-            CreateHostBuilder(args).Build().Run();
+
+
+                }
+                CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

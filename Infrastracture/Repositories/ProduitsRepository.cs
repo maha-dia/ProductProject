@@ -1,8 +1,10 @@
 ﻿using Application.IRepositories;
 using Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -16,26 +18,26 @@ namespace Infrastracture.Repositories
         {
             _dbContext = dbContext;
         }  
-        public IEnumerable<Produit> GetAllProduits()
+        public async Task<List<Produit>> GetAllProduitsAsync(CancellationToken cancellationToken)
         {
-            var produits = _dbContext.Produits.ToList();
+            var produits = await _dbContext.Produits.ToListAsync();
             return produits;
         }
 
-        public Produit GetProduitById(Guid id)
+        public async Task<Produit> GetProduitByIdAsync(Guid id,CancellationToken cancellationToken)
         {
-            var produit = _dbContext.Produits.Where(u=>u.Id == id).FirstOrDefault();
+            var produit =await _dbContext.Produits.Where(u=>u.Id == id).FirstOrDefaultAsync();
             return produit;
         }
 
-        public Produit AddProduit(Produit produit)
+        public async Task<Produit> AddProduitAsync(Produit produit, CancellationToken cancellationToken)
         {
-            var newproduit = _dbContext.Produits.Add(produit);
+            var newproduit = await _dbContext.Produits.AddAsync(produit);
             return newproduit.Entity;
         }
-        public void SaveChange()
+        public void SaveChangeAsync()
         {
-            _dbContext.SaveChanges();
+            _dbContext.SaveChangesAsync();
 
         }
 
