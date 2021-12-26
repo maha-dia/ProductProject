@@ -39,58 +39,35 @@ namespace VennDevTest.Controllers
             var result = await this._mediator.Send(request);
             return View("Produits", result);
         }
-        //[HttpGet]
-        //public IActionResult GetPoduitById(Guid id)
-        //{
-        //    var item = _produitRepository.GetProduitById(id);
-        //    return View("DetailsProduit",item);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetPoduitById(Guid id)
+        {
+            var item = await this._mediator.Send(new GetProduitById() { Id = id});
+            return View("DetailsProduit", item);
+        }
         public IActionResult AddProduit()
         {
-            Produit p = new Produit();
+            AddProduitCommand p = new AddProduitCommand();
             return View("AddProduit", p);
         }
-        //[HttpPost]
-        //public IActionResult SaveProduit(Produit p)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _produitRepository.AddProduit(p);
-        //        _produitRepository.SaveChange();
-        //        return RedirectToAction("GetAllProduits");
-        //    }
-        //    return View("AddProduit", p);
-        //}
-       
-        //public IActionResult DeleteProduct(Guid id)
-        //{
-        //    var product = _produitRepository.GetProduitById(id);
-        //    _produitRepository.DeleteProduct(product);
-        //    _produitRepository.SaveChange();
-        //    return RedirectToAction("GetAllProduits");
-        //}
-        //public IActionResult EditForm(Guid id)
-        //{
-        //    var product = _produitRepository.GetProduitById(id);
-        //    return View("EditProduit", product);
-        //}
-        //public IActionResult EditeProduct(Guid id,Produit product)
-        //{
-        //    var prod = _produitRepository.GetProduitById(id);
-            
-            
-        //        prod.Description = product.Description;
-        //        prod.Nom = product.Nom;
-        //        prod.Prix = product.Prix;
-        //        prod.Quantite = product.Quantite;
-        //        prod.Image = product.Image;
-               
-        //        _produitRepository.SaveChange();
-                
-            
-        //    return RedirectToAction("GetAllProduits");
 
-        //}
+
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+            
+            await this._mediator.Send(new DeleteProductCommand() { Id = id });
+            return RedirectToAction("GetAllProduits");
+        }
+        public async Task<IActionResult> EditForm(Guid id)
+        {
+            var item = await this._mediator.Send(new GetProduitById() { Id = id });
+            return View("EditProduit", item);
+        }
+        public async Task<IActionResult> EditeProduct(EditProductCommand command)
+        {
+            await this._mediator.Send(command);
+            return RedirectToAction("GetAllProduits");
+        }
 
 
 

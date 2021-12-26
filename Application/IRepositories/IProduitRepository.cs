@@ -13,7 +13,7 @@ namespace Application.IRepositories
         Task<List<Produit>> GetAllProduitsAsync(CancellationToken cancellationToken);
         Task<Produit> GetProduitByIdAsync(Guid id,CancellationToken cancellationToken);
         Task<Produit> AddProduitAsync(Produit produit,CancellationToken cancellationToken);
-        void SaveChangeAsync();
+        Task SaveChangeAsync();
         void DeleteProduct(Produit produit);
     }
 }

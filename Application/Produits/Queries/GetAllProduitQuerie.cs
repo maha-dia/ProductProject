@@ -31,7 +31,7 @@ namespace Application.Produits.Queries
             var produits = await _produitRepository.GetAllProduitsAsync(cancellationToken);
             if(produits == null)
             {
-                return null;    
+                return itemList;    
             }
             foreach(var item in produits)
             {

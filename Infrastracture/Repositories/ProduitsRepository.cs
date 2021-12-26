@@ -35,9 +35,9 @@ namespace Infrastracture.Repositories
             var newproduit = await _dbContext.Produits.AddAsync(produit);
             return newproduit.Entity;
         }
-        public void SaveChangeAsync()
+        public async Task SaveChangeAsync()
         {
-            _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
         }
 

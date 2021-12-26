@@ -44,7 +44,7 @@ namespace Application.Produits.Commands
                 Quantite=request.Quantite  
             };
             var newProduct =await _produitRepository.AddProduitAsync(produit, cancellationToken);
-            _produitRepository.SaveChangeAsync();
+            await _produitRepository.SaveChangeAsync();
             var result =_mapper.Map<ProduitDto>(newProduct);
             return result;
         }
